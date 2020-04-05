@@ -1,0 +1,17 @@
+<div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="container" *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card" style="width: 20rem;"></div>
+            <div class="card-body">
+                <div class="card-title">{{results.name}}</div>
+                <p class="card-text">{{results.description}}</p>
+                <h5 class="card-text">{{results.price}}</h5>
+                <button class="btn btn-primary btn-sm" type="submit">Add to Cart</button> | 
+                <button class="btn btn-primary btn-sm" type="submit">Buy now</button>
+            </div>
+        </div>
+</div>
+</div>

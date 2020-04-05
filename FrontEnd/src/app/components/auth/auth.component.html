@@ -1,0 +1,20 @@
+<div class="row justify-content-md-center">
+    <div class="col-sm-3">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" ngModel name="email" required email>
+            </div>
+            <div class="from-group">
+                <label for="password" class="password">Password</label>
+                <input type="password" id="password" class="form-control" ngModel name="password" required password minlength="6">
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">{{ isLogin ? 'Login' : 'Sign Up' }}</button> | 
+                <button class="btn btn-primary" type="button" (click)="SwitchLoginMode()">
+                    Switch to {{isLogin ? 'Sign Up' : 'Login'}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

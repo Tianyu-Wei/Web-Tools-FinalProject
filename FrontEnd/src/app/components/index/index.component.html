@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">HomeShopping</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="nav-item dropdown mr-2 ml-3">
+            <select name="cate" [(ngModel)]="category">
+                <option value="all">All</option>
+                <option value="electronics">Eletronics</option>
+                <option value="books">Books</option>
+                <option value="food">Foods</option>
+                <option value="grocery">Grocery</option>
+            </select>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="searchfield" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="keyword" name="keyword">
+            <a class="btn btn-warning mr-5" type="submit" href="search/{{category}}/{{keyword}}">Search</a>
+        </form>
+        <ul class="navbar-nav mr-auto float-right">
+            <li class="nav-item active">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/category" class="nav-link">Category</a>
+            </li>
+            <li class="nav-item">
+                <a href="/account" class="nav-link">Sign up/Sign in</a>
+            </li>
+            <li class="nav-item">
+                <a href="/order" class="nav-link">Order/Return</a>
+            </li>
+            <li class="nav-item">
+                <a href="/cart" class="nav-link">Cart</a>
+            </li>
+        </ul>
+    </div>
+</nav>

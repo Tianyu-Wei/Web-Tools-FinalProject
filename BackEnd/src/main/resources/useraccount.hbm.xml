@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.UserAccountPojo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="useraccount">
+        <id name="id" type="long">
+            <column name="userid"/>
+            <generator class="native"></generator>
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="username"/>
+        </property>
+        <property name="token" type="java.lang.String">
+            <column name="token"/>
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password"/>
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email"></column>
+        </property>
+        <property name="recovemail" type="java.lang.String">
+            <column name="recovemail"></column>
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="phone"></column>
+        </property>
+    </class>
+</hibernate-mapping>

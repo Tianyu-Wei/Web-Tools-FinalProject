@@ -1,0 +1,32 @@
+
+
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.MainPagePojo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="item">
+        <id name="id" type="long">
+            <column name="itemID"/>
+            <generator class="native"/>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name"></column>
+        </property>
+        <property name="category" type="java.lang.String">
+            <column name="category"></column>
+        </property>
+        <property name="amount" type="int">
+            <column name="amount"></column>
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description"></column>
+        </property>
+        <property name="discount" type="java.lang.String">
+            <column name="discount"></column>
+        </property>
+        <property name="imgURL" type="java.lang.String">
+            <column name="imgURL"></column>
+        </property>
+        <property name="price" type="double">
+            <column name="price"></column>
+        </property>
+    </class>
+</hibernate-mapping>

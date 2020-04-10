@@ -13,5 +13,7 @@
     <property name="hibernate.show_sql">true</property>
     <mapping resource="shopping.hbm.xml"/>
     <mapping resource="useraccount.hbm.xml"/>
+    <mapping resource="user.hbm.xml"/>
+    <mapping resource="authorities.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,15 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>BORAJI.COM</title>
+</head>
 <body>
-<h2>Hello World!</h2>
-<form action="api/add" method="post">
-    Name: <input name="name" type="text"><br>
-    Amount: <input name="amount" type="text"><br>
-    Category: <input name="category" type="text"><br>
-    Price: <input name="price" type="text"><br>
-    Description: <input name="description" type="text"><br>
-    imgURL: <input name="imgURL" type="text"><br>
-    Discount: <input name="discount" type="text"><br>
-    <input type="submit" name="submit">
+<h1>Spring MVC 5 + Spring Security 5 + Hibernate 5 example</h1>
+<h2>${message}</h2>
+
+<form action="logout" method="post">
+    <input value="Logout" type="submit">
 </form>
 </body>
 </html>

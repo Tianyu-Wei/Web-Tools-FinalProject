@@ -1,32 +1,37 @@
 package com.neu.finalpro.pojo;
 
+import javax.persistence.*;
+
 public class UserAccountPojo {
-    private long id;
+    private int id;
+
     private String username;
-    private String token;
+
     private String password;
+
     private String email;
+
     private String recovemail;
+
     private String phone;
 
     public UserAccountPojo() {
     }
 
-    public UserAccountPojo(long id, String username, String token, String password, String email, String recovemail, String phone) {
+    public UserAccountPojo(int id, String username, String password, String email, String recovemail, String phone) {
         this.id = id;
         this.username = username;
-        this.token = token;
         this.password = password;
         this.email = email;
         this.recovemail = recovemail;
         this.phone = phone;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,14 +41,6 @@ public class UserAccountPojo {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getPassword() {

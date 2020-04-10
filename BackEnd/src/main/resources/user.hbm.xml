@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.SignupUserPojo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="users">
+        <id name="username" type="java.lang.String">
+            <column name="username"/>
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="password"/>
+        </property>
+        <property name="enabled" type="java.lang.Boolean">
+            <column name="enabled"></column>
+        </property>
+        <set name="authorities" table="authorities" cascade="all" lazy="true">
+            <key>
+                <column name="username" not-null="true"></column>
+            </key>
+            <one-to-many class="com.neu.finalpro.pojo.SignupAuthPojo"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.OrderPojo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="userorder">
+        <id name="orderNum" type="int">
+            <column name="orderNum"/>
+            <generator class="native"></generator>
+        </id>
+        <many-to-one name="useraccountpojo" class="com.neu.finalpro.pojo.UserAccountPojo" fetch="select">
+            <column name="username" not-null="true"/>
+        </many-to-one>
+        <property name="item" type="java.lang.String">
+            <column name="item"/>
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status"/>
+        </property>
+        <set name="purchaseitem" table="item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="serialNum"/>
+            </key>
+            <one-to-many class="com.neu.finalpro.pojo.MainPagePojo"/>
+        </set>
+    </class>
+</hibernate-mapping>

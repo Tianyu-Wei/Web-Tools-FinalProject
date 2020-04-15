@@ -67,4 +67,27 @@ public class SearchItemDao {
         }
         return resultList;
     }
+
+    public List<MainPagePojo> categoryItem(String category) {
+        List<MainPagePojo> resultList = new ArrayList<>(); //Store result as list
+
+        try {
+
+            beginTransaction();
+            String allquery = "from MainPagePojo where category = '<cate>'";
+
+            //Make judgement by its category to the right HQL query
+                String newquery = allquery.replace("<cate>", category);
+                Query q = getSession().createQuery(newquery);
+                resultList = q.getResultList();
+
+        }catch (HibernateException e) {
+            e.printStackTrace();
+            rollback();
+        }
+        finally {
+            close();
+        }
+        return resultList;
+    }
 }

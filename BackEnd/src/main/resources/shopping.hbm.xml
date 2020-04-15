@@ -8,6 +8,9 @@
             <column name="itemID"/>
             <generator class="native"/>
         </id>
+<!--        <many-to-one name="serialNum" class="com.neu.finalpro.pojo.OrderPojo" fetch="select">-->
+<!--            <column name="serialNum" not-null="true"/>-->
+<!--        </many-to-one>-->
         <property name="name" type="java.lang.String">
             <column name="name"></column>
         </property>

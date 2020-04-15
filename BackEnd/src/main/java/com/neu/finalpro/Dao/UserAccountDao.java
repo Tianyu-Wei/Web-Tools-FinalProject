@@ -61,6 +61,26 @@ public class UserAccountDao {
         return null;
     }
 
+    public UserAccountPojo getUserById(String id) {
+        UserAccountPojo uap = new UserAccountPojo();
+        try {
+
+            beginTransaction();
+            Query q = getSession().createQuery("from UserAccountPojo where id =:id");
+            q.setInteger("id", Integer.parseInt(id));
+            uap = (UserAccountPojo) q.uniqueResult();
+            return uap;
+
+        }catch (HibernateException e) {
+            e.printStackTrace();
+            rollback();
+        }
+        finally {
+            close();
+        }
+        return null;
+    }
+
     public UserAccountPojo getUserByName(String username) {
         UserAccountPojo uap = new UserAccountPojo();
         try {
@@ -87,30 +107,17 @@ public class UserAccountDao {
         try {
 
             UserAccountPojo uap = new UserAccountPojo();
-            SignupAuthPojo sap = new SignupAuthPojo();
-            SignupUserPojo sup = new SignupUserPojo();
-            Set<SignupAuthPojo> tmpSet = new HashSet<>();
             String encriptedPassword = new BCryptPasswordEncoder().encode(password);
-            if (role.equals("user")){
-                sap.setAuthority("ROLE_USER");
-            }else if(role.equals("admin")){
-                sap.setAuthority("ROLE_ADMIN");
-            }
-            sup.setUsername(username);
-            sap.setSignupUserPojo(sup);
-            tmpSet.add(sap);
-            sup.setPassword(encriptedPassword);
-            sup.setEnabled(true);
-            sup.setAuthorities(tmpSet);
             uap.setUsername(username);
             uap.setPassword(encriptedPassword);
             uap.setEmail(email);
             uap.setRecovemail(recovemail);
             uap.setPhone(phone);
+            uap.setRole(role);
+            uap.setAuth("No");
 
             beginTransaction();
             getSession().save(uap);
-            getSession().save(sup);
             commit();
             result = 1;
 
@@ -124,17 +131,18 @@ public class UserAccountDao {
         return result;
     }
 
-    public int updateUser(int id, String username, String password, String email, String recovemail, String phone) {
+    public int updateUser(String oldusername, String username, String password, String email, String recovemail, String phone) {
         int result = 0;
         try {
 
             UserAccountPojo uap = new UserAccountPojo();
             beginTransaction();
-            Query q = getSession().createQuery("from UserAccountPojo where id= :id");
-            q.setInteger("id", id);
+            Query q = getSession().createQuery("from UserAccountPojo where username= :username");
+            q.setString("username", oldusername);
+            String encodedPassword = new BCryptPasswordEncoder().encode(password);
             uap = (UserAccountPojo) q.uniqueResult();
             uap.setUsername(username);
-            uap.setPassword(password);
+            uap.setPassword(encodedPassword);
             uap.setEmail(email);
             uap.setRecovemail(recovemail);
             uap.setPhone(phone);
@@ -166,6 +174,50 @@ public class UserAccountDao {
             result = 1;
 
         }catch (HibernateException e) {
+            e.printStackTrace();
+            rollback();
+        }
+        finally {
+            close();
+        }
+        return result;
+    }
+
+    public int Userlogin(String username){
+        int result = 0;
+        try{
+            UserAccountPojo uap = new UserAccountPojo();
+            beginTransaction();
+            Query q = getSession().createQuery("from UserAccountPojo where username= :username");
+            q.setString("username", username);
+            uap = (UserAccountPojo) q.uniqueResult();
+            uap.setAuth("Yes");
+            getSession().save(uap);
+            commit();
+            result = 1;
+        }catch (HibernateException e){
+            e.printStackTrace();
+            rollback();
+        }
+        finally {
+         close();
+        }
+        return result;
+    }
+
+    public int Userlogout(String username){
+        int result = 0;
+        try{
+            UserAccountPojo uap = new UserAccountPojo();
+            beginTransaction();
+            Query q = getSession().createQuery("from UserAccountPojo where username= :username");
+            q.setString("username", username);
+            uap = (UserAccountPojo) q.uniqueResult();
+            uap.setAuth("No");
+            getSession().save(uap);
+            commit();
+            result = 1;
+        }catch (HibernateException e){
             e.printStackTrace();
             rollback();
         }

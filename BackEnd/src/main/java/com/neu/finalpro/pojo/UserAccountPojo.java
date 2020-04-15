@@ -1,6 +1,8 @@
 package com.neu.finalpro.pojo;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserAccountPojo {
     private int id;
@@ -15,16 +17,37 @@ public class UserAccountPojo {
 
     private String phone;
 
+    private String role;
+
+    private String auth;
+
+    private Set<OrderPojo> order = new HashSet<>();
+
     public UserAccountPojo() {
     }
 
-    public UserAccountPojo(int id, String username, String password, String email, String recovemail, String phone) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.recovemail = recovemail;
-        this.phone = phone;
+    public Set<OrderPojo> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<OrderPojo> order) {
+        this.order = order;
+    }
+
+    public String getAuth() {
+        return auth;
+    }
+
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getId() {

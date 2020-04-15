@@ -2,6 +2,7 @@ package com.neu.finalpro.pojo;
 
 public class MainPagePojo {
     private long id;
+    private String serialNum;
     private String category;
     private String name;
     private int amount;
@@ -9,19 +10,25 @@ public class MainPagePojo {
     private String description;
     private String imgURL;
     private String discount;
+//    private OrderPojo orderPojo;
 
     public MainPagePojo() {
     }
 
-    public MainPagePojo(long id, String category, String name, int amount, double price, String description, String imgURL, String discount) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.amount = amount;
-        this.price = price;
-        this.description = description;
-        this.imgURL = imgURL;
-        this.discount = discount;
+//    public OrderPojo getOrderPojo() {
+//        return orderPojo;
+//    }
+//
+//    public void setOrderPojo(OrderPojo orderPojo) {
+//        this.orderPojo = orderPojo;
+//    }
+
+    public String getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum;
     }
 
     public long getId() {

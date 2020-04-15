@@ -14,6 +14,6 @@ export class FetchdataService {
     const httpParams = new HttpParams()
     .set('id', id);
 
-    return this.http.get<Array<searchresult>> (environment.api_URL + 'detail', {params: httpParams});
+    return this.http.get<Array<searchresult>> (environment.api_URL + 'itemdetail', {params: httpParams});
   }
 }

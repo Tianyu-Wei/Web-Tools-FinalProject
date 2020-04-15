@@ -16,10 +16,18 @@ export class SearchService {
     .set('cate', category)
     .set('keyword', keyword);
 
+    console.log(httpParam);
     return this.http.get<Array<searchresult>> (environment.api_URL + 'searchname', {params: httpParam})
   };
 
   getMainDataService(): Observable<Array<searchresult>> {
     return this.http.get<Array<searchresult>> (environment.api_URL);
   };
+
+  getCategoryService(category: string): Observable<Array<searchresult>> {
+    const httpParam = new HttpParams()
+    .set('cate', category);
+
+    return this.http.get<Array<searchresult>> (environment.api_URL + 'category', {params: httpParam});
+  }
 }

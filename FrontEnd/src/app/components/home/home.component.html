@@ -1,0 +1,17 @@
+<app-index></app-index>
+<section id="values" class="values">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 d-inline-block" *ngFor="let result of results">
+          <div class="card" style="width: 13rem;">
+            <div class="card-body">
+              <a href="/detail/{{result.id}}/{{username}}/{{auth}}/{{role}}"><img class="img-responsive" src="{{result.imgURL}}" height="150" width="150"></a>
+              <div class="card-text"><a href="/detail/{{result.id}}/{{username}}/{{auth}}/{{role}}">{{result.name}}</a></div>
+              <div class="card-text">{{result.description}}</div>
+              <p class="card-text">${{result.price}}</p>
+            </div>
+          </div>
+          </div>
+          </div>
+    </div>
+    </section>

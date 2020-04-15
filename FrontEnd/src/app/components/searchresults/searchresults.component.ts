@@ -14,11 +14,17 @@ export class SearchresultsComponent implements OnInit {
   keyword: string;
   tmpresult: any;
   result: searchresult;
+  @Input() username = 'no';
+  @Input() auth = 'no';
+  @Input() role = 'no';
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { 
     this.route.params.subscribe(params => {
       this.category = params['category'];
       this.keyword = params['keyword'];
+      this.username = params['username'];
+      this.auth = params['auth'];
+      this.role = params['role'];
     });
     this.getSearchResult();
   }

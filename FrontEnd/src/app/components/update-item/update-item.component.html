@@ -1,0 +1,40 @@
+<app-index></app-index>
+<div *ngIf="isUpdating">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<form #updateForm="ngForm" (ngSubmit)="update(updateForm)" *ngIf="!isUpdating">
+    <div class="form-group">
+        <label for="proname" class="proname">Product Name</label>
+        <input type="text" id="proname" class="form-control" ngModel name="proname">
+    </div>
+    <div class="form-group">
+        <label for="amount" class="amount">Amount</label>
+        <input type="text" id="amount" class="form-control" ngModel name="amount">
+    </div>
+    <div class="form-group">
+        <label for="price" class="price">Price</label>
+        <input type="text" id="price" class="form-control" ngModel name="price">
+    </div>
+    <div class="form-group">
+        <select name="category" id="category" ngModel name="category">
+            <option value="books">Books</option>
+            <option value="electronics">Electronics</option>
+            <option value="foods">Foods</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description" class="description">Description</label>
+        <input type="text" id="description" class="form-control" ngModel name="description">
+    </div>
+    <div class="form-group">
+        <label for="imgURL" class="imgURL">ImageURL</label>
+        <input type="text" id="imgURL" class="form-control" ngModel name="imgURL">
+    </div>
+    <div class="form-group">
+        <label for="discount" class="discount">Discount</label>
+        <input type="text" id="discount" class="form-control" ngModel name="discount">
+    </div>
+    <div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+</form>

@@ -1,3 +1,4 @@
+<app-index></app-index>
 <div *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
 </div>
@@ -6,6 +7,7 @@
         <div class="col-sm-4">
             <div class="card" style="width: 20rem;"></div>
             <div class="card-body">
+                <div><img class="img-responsive" src="{{results.imgURL}}" height="150" width="150"></div>
                 <div class="card-title">{{results.name}}</div>
                 <p class="card-text">{{results.description}}</p>
                 <h5 class="card-text">{{results.price}}</h5>

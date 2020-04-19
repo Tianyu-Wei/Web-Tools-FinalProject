@@ -8,8 +8,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ErrorComponent implements OnInit {
 
-  constructor() {
-    
+  @Input() username;
+  @Input() auth;
+  @Input() role;
+
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe(res => {
+      this.username = res['username'];
+      this.auth = res['auth'];
+      this.role = res['role'];
+    })
    }
 
   ngOnInit(): void {

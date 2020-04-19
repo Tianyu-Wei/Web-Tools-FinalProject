@@ -6,52 +6,52 @@ import java.util.Set;
 
 public class OrderPojo {
 
-    private String orderNum;
-    private String item;
-    private String status;
-    private UserAccountPojo useraccountpojo;
-    private Set<MainPagePojo> purchaseitem = new HashSet<>();
+    private int orderNum;
+    private String username;
+    private int itemID;
+    private int amount;
+    private String orderstatus;
 
     public OrderPojo() {
     }
 
-    public Set<MainPagePojo> getPurchaseitem() {
-        return purchaseitem;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPurchaseitem(Set<MainPagePojo> purchaseitem) {
-        this.purchaseitem = purchaseitem;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public UserAccountPojo getUseraccountpojo() {
-        return useraccountpojo;
-    }
-
-    public void setUseraccountpojo(UserAccountPojo useraccountpojo) {
-        this.useraccountpojo = useraccountpojo;
-    }
-
-    public String getOrderNum() {
+    public int getOrderNum() {
         return orderNum;
     }
 
-    public void setOrderNum(String orderNum) {
+    public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }
 
-    public String getItem() {
-        return item;
+    public int getItemID() {
+        return itemID;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
-    public String getStatus() {
-        return status;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(String orderstatus) {
+        this.orderstatus = orderstatus;
     }
 }

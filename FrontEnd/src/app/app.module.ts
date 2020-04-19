@@ -25,6 +25,17 @@ import { SelectRoleComponent } from './components/select-role/select-role.compon
 import { SellerProductComponent } from './components/seller-product/seller-product.component';
 import { UpdateItemComponent } from './components/update-item/update-item.component';
 import { CreateItemComponent } from './components/create-item/create-item.component';
+import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
+import { CartsuccessComponent } from './components/cartsuccess/cartsuccess.component';
+import { OrdermanageComponent } from './components/ordermanage/ordermanage.component';
+import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { AdminuserComponent } from './components/adminuser/adminuser.component';
+import { AdmincreateuserComponent } from './components/admincreateuser/admincreateuser.component';
+import { SellerorderComponent } from './components/sellerorder/sellerorder.component';
+import { SellernormalorderComponent } from './components/sellernormalorder/sellernormalorder.component';
+import { SellerreturnComponent } from './components/sellerreturn/sellerreturn.component';
+import { ShiporderComponent } from './components/shiporder/shiporder.component';
+import { CancelorderComponent } from './components/cancelorder/cancelorder.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +56,18 @@ import { CreateItemComponent } from './components/create-item/create-item.compon
     SelectRoleComponent,
     SellerProductComponent,
     UpdateItemComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    OrdersuccessComponent,
+    CartsuccessComponent,
+    OrdermanageComponent,
+    AdminpanelComponent,
+    AdminuserComponent,
+    AdmincreateuserComponent,
+    SellerorderComponent,
+    SellernormalorderComponent,
+    SellerreturnComponent,
+    ShiporderComponent,
+    CancelorderComponent,
   ],
   imports: [
     BrowserModule,

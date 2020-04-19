@@ -16,7 +16,7 @@ export class SelectRoleComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.username = params['username'];
       this.auth = params['auth'];
-      this.route = params['role'];
+      this.role = params['role'];
     });
     this.checkRole();
    }

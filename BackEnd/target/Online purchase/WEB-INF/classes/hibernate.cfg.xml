@@ -11,8 +11,10 @@
     <property name="hibernate.connection.password">772288wty</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="shopping.hbm.xml"/>
     <mapping resource="useraccount.hbm.xml"/>
-<!--    <mapping resource="order.hbm.xml"/>-->
+    <mapping resource="order.hbm.xml"/>
+    <mapping resource="cart.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

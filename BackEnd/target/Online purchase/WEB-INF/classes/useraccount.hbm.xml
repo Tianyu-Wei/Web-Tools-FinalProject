@@ -28,11 +28,5 @@
         <property name="auth" type="java.lang.String">
             <column name="auth"></column>
         </property>
-<!--        <set name="order" table="userorder" inverse="true" lazy="true" fetch="select">-->
-<!--            <key>-->
-<!--                <column name="username" not-null="true"/>-->
-<!--            </key>-->
-<!--            <one-to-many class="com.neu.finalpro.pojo.OrderPojo"/>-->
-<!--        </set>-->
     </class>
 </hibernate-mapping>

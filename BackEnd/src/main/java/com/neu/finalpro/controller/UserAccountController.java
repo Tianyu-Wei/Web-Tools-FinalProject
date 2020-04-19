@@ -4,12 +4,14 @@ import com.neu.finalpro.Dao.UserAccountDao;
 import com.neu.finalpro.pojo.UserAccountPojo;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 public class UserAccountController {
@@ -33,6 +35,21 @@ public class UserAccountController {
         }
 
         return uap;
+    }
+
+    @PostMapping("/getuserlist")
+    public List<UserAccountPojo> getUserList(HttpServletResponse response){
+        UserAccountDao uad = new UserAccountDao();
+        List<UserAccountPojo> resultlist = uad.getUserDetails();
+
+        response.setHeader("Content-Type", "application/json");
+        response.setHeader("Accept", "application/json");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+
+        return resultlist;
     }
 
     @PostMapping("/login")
@@ -122,7 +139,7 @@ public class UserAccountController {
         return "error";
     }
 
-    @RequestMapping(value = "updateuser", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateuser", method = RequestMethod.POST)
     public void updateUser(@RequestParam("oldusername") String oldusername, @RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email,
                            @RequestParam("recovemail") String recovemail, @RequestParam("phone") String phone, HttpServletRequest request, HttpServletResponse response) throws EmailException {
         UserAccountDao uad = new UserAccountDao();
@@ -142,5 +159,24 @@ public class UserAccountController {
         }else{
             response.setStatus(403);
         }
+    }
+
+    @PostMapping("/deleteuser")
+    public String deleteUser(@RequestParam("id") String id, HttpServletResponse response){
+        UserAccountDao uad = new UserAccountDao();
+        try {
+            uad.deleteItem(Integer.parseInt(id));
+            response.setHeader("Content-Type", "application/json");
+            response.setHeader("Accept", "application/json");
+            response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "error";
     }
 }

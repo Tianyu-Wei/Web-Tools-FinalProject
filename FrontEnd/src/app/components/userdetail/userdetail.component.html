@@ -5,13 +5,13 @@
 <div *ngIf="!Updated">
 <div *ngIf="isLoaded">
     <div>Username: {{result.username}}</div>
-    <div>Password: {{result.password}}</div>
     <div>E-mail: {{result.email}}</div>
     <div>Recovery E-mail {{result.recovemail}}</div>
     <div>Phone: {{result.phone}}</div>
     <div>Role: {{result.role}}</div>
     <button class="btn btn-primary" (click)="onSwitchUpdate()">Update</button>
-    <a href="/seller/{{oldusername}}/{{authen}}/seller" class="btn btn-primary">Seller management System</a>
+    <a href="/admin/{{oldusername}}/{{authen}}/admin" class="btn btn-primary" *ngIf="role.includes('admin')">Admin management System</a>
+    <a href="/seller/{{oldusername}}/{{authen}}/seller" class="btn btn-primary" *ngIf="role.includes('seller')">Seller management System</a>
 </div>
 </div>
 <div *ngIf="Updated">

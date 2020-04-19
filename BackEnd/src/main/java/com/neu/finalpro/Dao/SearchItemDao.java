@@ -1,6 +1,7 @@
 package com.neu.finalpro.Dao;
 
 import com.neu.finalpro.pojo.MainPagePojo;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

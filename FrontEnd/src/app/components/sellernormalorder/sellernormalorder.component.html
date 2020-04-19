@@ -1,0 +1,22 @@
+<app-index></app-index>
+<div class="container">
+    <section class="col-xs-12 col-sm-6 col-md-12">
+            <article class="search-result row" *ngFor="let searchresult of results; let i = index">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="Lorem ipsum" class="thumbnail"><img class="img-responsive" src="{{searchresult.imgURL}}" alt="{{searchresult.name}}" height="150" width="150"/></a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                    Order Number: <p>{{searchresult.orderNum}}</p>
+                    Name: <h3><a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="">{{searchresult.name}}</a></h3>
+                    Amount: <p>{{searchresult.amount}}</p>
+                    Order Status: <p>{{searchresult.orderstatus}}</p>
+                    Total: <div>${{searchresult.price}}</div>						
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                    <a href="/shiporder/{{searchresult.username}}/{{searchresult.orderNum}}/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Ship order</a> | 
+                    <a href="/cancelorder/{{searchresult.username}}/{{searchresult.orderNum}}/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Cancel order</a>
+                </div>
+                <span class="clearfix borda"></span>
+            </article>
+        </section>
+    </div>

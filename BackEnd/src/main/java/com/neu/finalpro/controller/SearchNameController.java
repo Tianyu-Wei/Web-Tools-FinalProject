@@ -19,9 +19,10 @@ import java.util.List;
 public class SearchNameController {
 
     @RequestMapping(path = "/searchname", method = RequestMethod.GET)
-    public List<MainPagePojo> searchByName(@RequestParam("keyword") String keyword, @RequestParam("cate") String category, HttpServletRequest request, HttpServletResponse response) {
+    public List<MainPagePojo> searchByName(@RequestParam("cate") String category, HttpServletRequest request, HttpServletResponse response) {
         SearchItemDao sid = new SearchItemDao();
-
+        HttpSession session = request.getSession(true);
+        String keyword = (String) session.getAttribute("filterkeyword");
         List<MainPagePojo> result = sid.searchItem(category, keyword);
 
         response.setHeader("Content-Type", "application/json");
@@ -30,9 +31,6 @@ public class SearchNameController {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
-
-        HttpSession session = request.getSession(true);
-        session.setAttribute("result", result);
 
         return result;
     }

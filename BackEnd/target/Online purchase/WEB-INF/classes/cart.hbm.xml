@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.CartPojo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="cart">
+        <id name="id" type="long">
+            <column name="cart_id"/>
+            <generator class="identity"></generator>
+        </id>
+        <property name="itemID" type="int">
+            <column name="itemid"/>
+        </property>
+        <property name="amount" type="int">
+            <column name="amount"/>
+        </property>
+        <property name="total" type="double">
+            <column name="total"/>
+        </property>
+        <property name="name" type="string">
+            <column name="name"/>
+        </property>
+    </class>
+</hibernate-mapping>

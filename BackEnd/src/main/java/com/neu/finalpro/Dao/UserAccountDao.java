@@ -40,7 +40,7 @@ public class UserAccountDao {
         getSession().close();
     }
 
-    public List getUserDetails() {
+    public List<UserAccountPojo> getUserDetails() {
         try {
 
             beginTransaction();

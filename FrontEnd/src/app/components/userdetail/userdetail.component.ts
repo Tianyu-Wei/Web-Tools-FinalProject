@@ -48,7 +48,7 @@ export class UserdetailComponent implements OnInit {
       this.isLoaded = true;
     });
   } else{
-    this.router.navigate(['/error']);
+    this.router.navigate(['/error/' + this.username + '/' + this.auth + '/' + this.role]);
   }
   }
 

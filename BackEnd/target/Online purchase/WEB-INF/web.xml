@@ -8,6 +8,14 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/applicationContext.xml</param-value>
   </context-param>
+  <filter>
+    <filter-name>SearchFilter</filter-name>
+    <filter-class>com.neu.finalpro.filter.SearchFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SearchFilter</filter-name>
+    <url-pattern>/api/searchname</url-pattern>
+  </filter-mapping>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

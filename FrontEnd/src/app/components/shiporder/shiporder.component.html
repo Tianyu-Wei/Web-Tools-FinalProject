@@ -1,0 +1,8 @@
+<app-index></app-index>
+<form #shipform="ngForm" (ngSubmit)="shiporder(shipform)">
+    <div class="form-group">
+        <label for="labelnum" class="labelnum">Shipping Number: </label>
+        <input type="text" id="labelnum" class="form-control" ngModel name="labelnum" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Confirm</button>
+</form>

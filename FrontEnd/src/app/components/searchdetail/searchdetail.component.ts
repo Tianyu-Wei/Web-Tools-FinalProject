@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { searchresult } from 'src/app/models/searchresult';
 import { FetchdataService } from 'src/app/services/fetchdata.service';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-searchdetail',
@@ -18,7 +19,7 @@ export class SearchdetailComponent implements OnInit {
   @Input() auth = 'no';
   @Input() role = 'no';
 
-  constructor(private fetchdataService: FetchdataService, private route: ActivatedRoute) {
+  constructor(private fetchdataService: FetchdataService, private route: ActivatedRoute, private orderservice: CartServiceService, private router: Router) {
     route.params.subscribe(params => {
       this.id = params.id;
       this.auth = params['auth'];
@@ -41,5 +42,31 @@ export class SearchdetailComponent implements OnInit {
     });
 
   };
+
+  addToCart(id: number){
+    if (this.auth === 'no'){
+      this.router.navigate(['/select/' + this.username + '/' + this.auth + '/' + this.role]);
+    }else {
+    const itemid = id.toString();
+
+    this.orderservice.addToCart(this.username, itemid, '1').subscribe(res => {
+      this.router.navigate(['/cartsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+    });
+    this.router.navigate(['/cartsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+  }
+  }
+
+  createOrder(id: number){
+    if (this.auth === 'no'){
+      this.router.navigate(['/select/' + this.username + '/' + this.auth + '/' + this.role]);
+    }else {
+    const itemid = id.toString();
+
+    this.orderservice.createOrder(this.username, itemid, '1').subscribe(res => {
+      this.router.navigate(['/ordersuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+    });
+    this.router.navigate(['/ordersuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+  }
+  }
 
 }

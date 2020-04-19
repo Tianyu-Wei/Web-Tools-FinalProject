@@ -1,0 +1,16 @@
+<app-index></app-index>
+<div class="container">
+    <a href="/admincreateuser/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Create User</a>
+    <section class="col-xs-12 col-sm-6 col-md-12">
+            <article class="search-result row" *ngFor="let userinfo of result; let i = index">
+                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                    <h5>{{userinfo.username}}</h5>		
+                    <p>{{userinfo.email}}</p>
+                    <p>{{userinfo.role}}</p>
+                    <a href="/userdetail/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Update</a> | 
+                    <button class="btn btn-primary" (click)="delete(userinfo.id)">Delete</button>	
+                </div>
+                <span class="clearfix borda"></span>
+            </article>
+        </section>
+    </div>

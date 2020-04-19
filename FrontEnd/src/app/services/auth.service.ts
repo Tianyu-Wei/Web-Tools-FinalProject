@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { User } from '../models/User';
 import { Config } from 'protractor';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,11 @@ export class AuthService {
     return this.http.post<Array<User>>("http://localhost:8080/BackEnd_war_exploded/login", params);
   }
 
+  getUserList(){
+    const params = new HttpParams();
+    return this.http.post<Array<User>>("http://localhost:8080/BackEnd_war_exploded/getuserlist", params);
+  }
+
   getUser(username: string) {
 
     const params = new HttpParams()
@@ -49,7 +55,8 @@ export class AuthService {
   }
 
   logout(){
-    return this.http.post("http://localhost:8080/BackEnd_war_exploded/logout", {});
+    const params = new HttpParams();
+    return this.http.post("http://localhost:8080/BackEnd_war_exploded/logout", params);
   }
 
   updateUser(oldusername: string, username: string, password: string, email: string, recovemail: string, phone: string){
@@ -62,5 +69,12 @@ export class AuthService {
     .set('phone', phone);
 
     return this.http.post("http://localhost:8080/BackEnd_war_exploded/updateuser", params);
+  }
+
+  deleteUser(id: string){
+    const params = new HttpParams()
+    .set('id', id);
+
+    return this.http.post("http://localhost:8080/BackEnd_war_exploded/deleteuser", params);
   }
 }

@@ -1,6 +1,10 @@
 package com.neu.finalpro.pojo;
 
+import org.hibernate.criterion.Order;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,17 +25,8 @@ public class UserAccountPojo {
 
     private String auth;
 
-    private Set<OrderPojo> order = new HashSet<>();
 
     public UserAccountPojo() {
-    }
-
-    public Set<OrderPojo> getOrder() {
-        return order;
-    }
-
-    public void setOrder(Set<OrderPojo> order) {
-        this.order = order;
     }
 
     public String getAuth() {

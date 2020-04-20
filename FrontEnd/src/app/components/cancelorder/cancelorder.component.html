@@ -2,7 +2,7 @@
 <div *ngIf="isloading">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<div class="contain" *ngIf="!isloading">
+<div class="contain" *ngIf="!isloading" style="text-align: center;">
     <h4>Are you sure to cancel the order: </h4>
     <button class="btn btn-primary" (click)="cancelorder()">Confirm</button>
 </div>

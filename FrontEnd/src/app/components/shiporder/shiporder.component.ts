@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ShiporderComponent implements OnInit {
 
-  @Input() adminname;
+  @Input() sellername;
   @Input() ordernum;
   @Input() username;
   @Input() auth;
@@ -20,7 +20,7 @@ export class ShiporderComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
-      this.adminname = res['adminname'];
+      this.sellername = res['sellername'];
       this.ordernum = res['ordernum'];
       this.username = res['username'];
       this.auth = res['auth'];
@@ -37,11 +37,11 @@ const labelnum = form.value.labelnum;
 
     this.cartservice.shipOrder(this.username, this.ordernum, labelnum).subscribe(res => {
       this.isloading = false;
-      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.sellername + '/' + this.auth + '/' + this.role]);
     }, error => {
       this.isloading = false;
       this.error = error;
-      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.sellername + '/' + this.auth + '/' + this.role]);
     });
   }
 

@@ -40,6 +40,7 @@ import { ReturnsuccessComponent } from './components/returnsuccess/returnsuccess
 import { DeletesuccessComponent } from './components/deletesuccess/deletesuccess.component';
 import { ShipsuccessComponent } from './components/shipsuccess/shipsuccess.component';
 import { UserdeletesuccessComponent } from './components/userdeletesuccess/userdeletesuccess.component';
+import { ReturnproveComponent } from './components/returnprove/returnprove.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { UserdeletesuccessComponent } from './components/userdeletesuccess/userd
     DeletesuccessComponent,
     ShipsuccessComponent,
     UserdeletesuccessComponent,
+    ReturnproveComponent,
   ],
   imports: [
     BrowserModule,

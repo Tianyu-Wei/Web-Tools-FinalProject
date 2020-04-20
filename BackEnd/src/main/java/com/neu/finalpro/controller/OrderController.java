@@ -1,6 +1,7 @@
 package com.neu.finalpro.controller;
 
 import com.neu.finalpro.Dao.CartDao;
+import com.neu.finalpro.Dao.CrudItemDao;
 import com.neu.finalpro.Dao.OrderDao;
 import com.neu.finalpro.pojo.MainPagePojo;
 import com.neu.finalpro.pojo.OrderListPojo;
@@ -101,26 +102,32 @@ public class OrderController {
     }
 
     @RequestMapping(path = "/getnormalorder", method = RequestMethod.POST)
-    public List<OrderPojo> getNormalOrder(@RequestParam("username") String username, HttpServletResponse response) {
+    public List<OrderListPojo> getNormalOrder(@RequestParam("username") String username, HttpServletResponse response) {
         OrderDao od = new OrderDao();
+        CrudItemDao cid = new CrudItemDao();
+        MainPagePojo mainPagePojo = null;
+        OrderListPojo orderListPojo = null;
         List<OrderPojo> result = od.getNormalOrder();
+        List<MainPagePojo> mainPagePojoList = new ArrayList<>();
+        List<OrderListPojo> orderListPojos = new ArrayList<>();
 
-        response.setHeader("Content-Type", "application/json");
-        response.setHeader("Accept", "application/json");
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+        for (int j = 0; j < result.size(); j++){
+            mainPagePojo = new MainPagePojo();
+            mainPagePojo = cid.getItemDetail(String.valueOf(result.get(j).getItemID()));
+            mainPagePojoList.add(mainPagePojo);
+        }
 
-        return result;
-    }
-
-    @RequestMapping(path = "/getreturnorder", method = RequestMethod.POST)
-    public List<OrderPojo> getReturnOrder(@RequestParam("username") String username, HttpServletResponse response) {
-        OrderDao od = new OrderDao();
-        List<OrderPojo> result = od.getReturnOrder();
-        for(int i = 0; i < result.size(); i++){
-         System.out.println(result.get(i));
+        for (int i = 0; i < mainPagePojoList.size(); i++){
+            orderListPojo = new OrderListPojo();
+            orderListPojo.setUsername(result.get(i).getUsername());
+            orderListPojo.setId(mainPagePojoList.get(i).getId());
+            orderListPojo.setName(mainPagePojoList.get(i).getName());
+            orderListPojo.setOrderNum(result.get(i).getOrderNum());
+            orderListPojo.setAmount(result.get(i).getAmount());
+            orderListPojo.setImgURL(mainPagePojoList.get(i).getImgURL());
+            orderListPojo.setPrice(mainPagePojoList.get(i).getPrice() * result.get(i).getAmount());
+            orderListPojo.setOrderstatus(result.get(i).getOrderstatus());
+            orderListPojos.add(orderListPojo);
         }
 
         response.setHeader("Content-Type", "application/json");
@@ -130,7 +137,46 @@ public class OrderController {
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
 
-        return result;
+        return orderListPojos;
+    }
+
+    @RequestMapping(path = "/getreturnorder", method = RequestMethod.POST)
+    public List<OrderListPojo> getReturnOrder(@RequestParam("username") String username, HttpServletResponse response) {
+        OrderDao od = new OrderDao();
+        CrudItemDao cid = new CrudItemDao();
+        MainPagePojo mainPagePojo = null;
+        OrderListPojo orderListPojo = null;
+        List<OrderPojo> result = od.getReturnOrder();
+        List<MainPagePojo> mainPagePojoList = new ArrayList<>();
+        List<OrderListPojo> orderListPojos = new ArrayList<>();
+
+        for (int j = 0; j < result.size(); j++){
+            mainPagePojo = new MainPagePojo();
+            mainPagePojo = cid.getItemDetail(String.valueOf(result.get(j).getItemID()));
+            mainPagePojoList.add(mainPagePojo);
+        }
+
+        for (int i = 0; i < mainPagePojoList.size(); i++){
+            orderListPojo = new OrderListPojo();
+            orderListPojo.setUsername(result.get(i).getUsername());
+            orderListPojo.setId(mainPagePojoList.get(i).getId());
+            orderListPojo.setName(mainPagePojoList.get(i).getName());
+            orderListPojo.setOrderNum(result.get(i).getOrderNum());
+            orderListPojo.setAmount(result.get(i).getAmount());
+            orderListPojo.setImgURL(mainPagePojoList.get(i).getImgURL());
+            orderListPojo.setPrice(mainPagePojoList.get(i).getPrice() * result.get(i).getAmount());
+            orderListPojo.setOrderstatus(result.get(i).getOrderstatus());
+            orderListPojos.add(orderListPojo);
+        }
+
+        response.setHeader("Content-Type", "application/json");
+        response.setHeader("Accept", "application/json");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Methoods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
+
+        return orderListPojos;
     }
 
     @RequestMapping(path = "/returnorder", method = RequestMethod.POST)

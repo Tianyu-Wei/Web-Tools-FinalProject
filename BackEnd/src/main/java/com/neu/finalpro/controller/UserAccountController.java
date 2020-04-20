@@ -164,8 +164,14 @@ public class UserAccountController {
     @PostMapping("/deleteuser")
     public String deleteUser(@RequestParam("id") String id, HttpServletResponse response){
         UserAccountDao uad = new UserAccountDao();
+        EmailController ec = new EmailController();
+        UserAccountPojo uap = new UserAccountPojo();
+
         try {
             uad.deleteItem(Integer.parseInt(id));
+            uap = uad.getUserById(id);
+            ec.UserDeleteSuccess(uap.getUsername());
+
             response.setHeader("Content-Type", "application/json");
             response.setHeader("Accept", "application/json");
             response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");

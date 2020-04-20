@@ -83,14 +83,14 @@ export class CartServiceService {
     const params = new HttpParams()
     .set('username', username);
 
-    return this.http.post(environment.api_URL + 'getnormalorder', params);
+    return this.http.post<Array<orderresult>>(environment.api_URL + 'getnormalorder', params);
   }
 
   getReturnOrder(username: string){
     const params = new HttpParams()
     .set('username', username);
 
-    return this.http.post(environment.api_URL + 'getreturnorder', params);
+    return this.http.post<Array<orderresult>>(environment.api_URL + 'getreturnorder', params);
   }
   
   shipOrder(username: string, orderNum: string, label: string) {

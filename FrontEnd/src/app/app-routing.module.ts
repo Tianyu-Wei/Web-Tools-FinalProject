@@ -29,6 +29,7 @@ import { SellerorderComponent } from './components/sellerorder/sellerorder.compo
 import { DeletesuccessComponent } from './components/deletesuccess/deletesuccess.component';
 import { ShipsuccessComponent } from './components/shipsuccess/shipsuccess.component';
 import { UserdeletesuccessComponent } from './components/userdeletesuccess/userdeletesuccess.component';
+import { ReturnproveComponent } from './components/returnprove/returnprove.component';
 
 
 const routes: Routes = [
@@ -60,8 +61,9 @@ const routes: Routes = [
   {path: 'cancelorder/:username/:ordernum/:sellername/:auth/:role', component: CancelorderComponent},
   {path: 'seller/order/:username/:auth/:role', component: SellerorderComponent},
   {path: 'deletesuccess/:username/:auth/:role', component: DeletesuccessComponent},
-  {path: 'shipsuccess/:username/:auth/:role', component: ShipsuccessComponent},
-  {path: 'userdeletesuccess/:username/:auth/:role', component: UserdeletesuccessComponent}
+  {path: 'shipsuccess/:orderuser/:username/:auth/:role', component: ShipsuccessComponent},
+  {path: 'userdeletesuccess/:username/:auth/:role', component: UserdeletesuccessComponent},
+  {path: 'seller/orders/return/approve/:username/:auth/:role', component: ReturnproveComponent}
 
 ];
 

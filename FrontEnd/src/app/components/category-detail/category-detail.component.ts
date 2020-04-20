@@ -15,6 +15,7 @@ export class CategoryDetailComponent implements OnInit {
   @Input() category;
   @Input() role;
   results: any;
+  empty = false;
 
   constructor(private route: ActivatedRoute, private searchservice: SearchService) { 
     this.route.params.subscribe(params => {
@@ -32,6 +33,9 @@ ngOnInit(): void {
 getcategoryDetail() {
   this.searchservice.getCategoryService(this.category).subscribe(resData => {
     this.results = resData;
+    if (Object.keys(resData).length === 0) {
+      this.empty = true;
+    }
   });
 }
 

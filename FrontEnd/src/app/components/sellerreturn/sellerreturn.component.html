@@ -1,6 +1,9 @@
 <app-index></app-index>
-<div *ngIf="isloading">
+<div *ngIf="isloading" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="empty" style="text-align: center;">
+    It's empty here!
 </div>
     <div class="container" *ngIf="!isloading">
         <section class="col-xs-12 col-sm-6 col-md-12">

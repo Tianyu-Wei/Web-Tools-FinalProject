@@ -3,6 +3,7 @@ package com.neu.finalpro.pojo;
 public class OrderListPojo {
 
     private int orderNum;
+    private String username;
     private String name;
     private long id;
     private int amount;
@@ -11,6 +12,14 @@ public class OrderListPojo {
     private String imgURL;
 
     public OrderListPojo() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getOrderNum() {

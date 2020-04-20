@@ -1,4 +1,7 @@
 <app-index></app-index>
+<div *ngIf="empty" style="text-align: center;">
+    It's empty here!
+</div>
 <div class="container">
         <section class="col-xs-12 col-sm-6 col-md-12">
             <article class="search-result row mt-5" *ngFor="let searchresult of results; let i = index">

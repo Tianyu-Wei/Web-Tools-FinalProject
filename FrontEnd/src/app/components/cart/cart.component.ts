@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   results: any;
   error = '';
   isloading = false;
+  empty = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -38,6 +39,9 @@ export class CartComponent implements OnInit {
   getCart(){
     this.cartservice.getCartData(this.username).subscribe(res => {
       this.results = res;
+      if (Object.keys(res).length === 0){
+        this.empty = true;
+      }
     }, error => {
       this.error = 'Loading error! Please wait and try again.';
     });

@@ -18,6 +18,7 @@ export class OrdermanageComponent implements OnInit {
   error = '';
   status = '';
   returnBtn = true;
+  empty = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -46,6 +47,9 @@ export class OrdermanageComponent implements OnInit {
     this.cartservice.getOrder(this.username).subscribe(res => {
       this.results = res;
       console.log(this.results);
+      if (Object.keys(res).length === 0) {
+        this.empty = true;
+      }
     }, error => {
       this.error = 'Get order failed!';
     });

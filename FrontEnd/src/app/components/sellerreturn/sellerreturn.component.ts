@@ -19,6 +19,7 @@ export class SellerreturnComponent implements OnInit {
   error = '';
   status = '';
   isloading = false;
+  empty = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -44,6 +45,9 @@ export class SellerreturnComponent implements OnInit {
     this.cartservice.getReturnOrder(this.username).subscribe(res => {
       this.results = res;
       this.isloading = false;
+      if (Object.keys(res).length === 0){
+        this.empty = true;
+      }
     }, error => {
       this.error = error;
       console.log(error);
@@ -55,7 +59,7 @@ export class SellerreturnComponent implements OnInit {
     this.isloading = true;
     this.cartservice.approveReturn(ordernum.toString(), this.username).subscribe(res =>{
       this.isloading = false;
-      this.router.navigate(['/seller/orders/return' + '/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.router.navigate(['/seller/orders/return/approve/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
       this.isloading = false;
       this.error = error;

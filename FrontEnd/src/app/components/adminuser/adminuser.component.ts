@@ -52,4 +52,8 @@ isloading = false;
       this.router.navigate(['/userdeletesuccess/' + this.username + '/' + this.auth + '/' + this.role]);
     });
   }
+
+  update(oldusername: string) {
+    this.router.navigate(['/adminuserupdate/' + oldusername + '/' + this.username + '/' + this.auth + '/' + this.role]);
+  }
 }

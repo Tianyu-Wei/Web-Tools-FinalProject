@@ -1,7 +1,9 @@
 <app-index></app-index>
-<div *ngIf="isloading">
+<div *ngIf="isloading" style="text-align: center;">
         <app-loading-spinner></app-loading-spinner>
 </div>
+<div class="row justify-content-md-center">
+    <div class="col col-sm-6">
 <form #shipform="ngForm" (ngSubmit)="shiporder(shipform)" *ngIf="!isloading">
     <div class="form-group">
         <label for="labelnum" class="labelnum">Shipping Number: </label>
@@ -9,3 +11,5 @@
     </div>
     <button class="btn btn-primary" type="submit">Confirm</button>
 </form>
+</div>
+</div>

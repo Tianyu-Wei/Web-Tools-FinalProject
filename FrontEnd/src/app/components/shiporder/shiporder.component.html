@@ -1,5 +1,8 @@
 <app-index></app-index>
-<form #shipform="ngForm" (ngSubmit)="shiporder(shipform)">
+<div *ngIf="isloading">
+        <app-loading-spinner></app-loading-spinner>
+</div>
+<form #shipform="ngForm" (ngSubmit)="shiporder(shipform)" *ngIf="!isloading">
     <div class="form-group">
         <label for="labelnum" class="labelnum">Shipping Number: </label>
         <input type="text" id="labelnum" class="form-control" ngModel name="labelnum" required>

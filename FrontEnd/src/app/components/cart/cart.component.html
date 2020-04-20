@@ -1,7 +1,10 @@
 <app-index></app-index>
-<div class="container">
+<div *ngIf="isloading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="container" *ngIf="!isloading">
     <section class="col-xs-12 col-sm-6 col-md-12">
-            <article class="search-result row" *ngFor="let searchresult of results; let i = index">
+            <article class="search-result row mt-5" *ngFor="let searchresult of results; let i = index">
                 <div class="col-xs-12 col-sm-12 col-md-3">
                     <a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="Lorem ipsum" class="thumbnail"><img class="img-responsive" src="{{searchresult.imgURL}}" alt="{{searchresult.name}}" height="150" width="150"/></a>
                 </div>
@@ -10,10 +13,14 @@
                     <p>{{searchresult.description}}</p>
                     <div>${{searchresult.price}}</div>						
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                    <button class="btn btn-primary" (click)="createOrder(searchresult.id)">Buy now</button>
-                    <button class="btn btn-primary" (click)="deleteOrder(searchresult.id)">Delete from cart</button>
+                    <div class="col-xs-8">
+                        <div class="row">
+                        <button class="btn btn-primary mt-3" (click)="createOrder(searchresult.id)">Buy now</button>
+                    </div>
+                    <div class="row">
+                    <button class="btn btn-primary mt-3" (click)="deleteOrder(searchresult.id)">Delete from cart</button>
                 </div>
+                    </div>
                 <span class="clearfix borda"></span>
             </article>
         </section>

@@ -2,6 +2,8 @@
 <div *ngIf="isCreating">
     <app-loading-spinner></app-loading-spinner>
 </div>
+<div class="row justify-content-md-center">
+    <div class="col col-sm-4">
 <form #createForm="ngForm" (ngSubmit)="createItem(createForm)" *ngIf="!isCreating">
     <div class="form-group">
         <label for="proname" class="proname">Product Name</label>
@@ -38,3 +40,5 @@
         <button class="btn btn-primary" type="submit">Save</button>
     </div>
 </form>
+</div>
+</div>

@@ -30,6 +30,7 @@ export class UpdateItemComponent implements OnInit {
   }
 
 update(form: NgForm) {
+  this.isUpdating = true;
   const name = form.value.proname;
   const amount = form.value.amount;
   const price = form.value.price;
@@ -40,8 +41,10 @@ update(form: NgForm) {
 
   this.crudservice.updateItemService(this.id, name, amount, price, category, description, imgUrl, discount).subscribe(res => {
     this.router.navigate(['/seller/manageproduct/' + this.username + '/' + this.auth + '/' + this.role]);
+    this.isUpdating = false
   }, error => {
     this.router.navigate(['/seller/manageproduct/' + this.username + '/' + this.auth + '/' + this.role]);
+    this.isUpdating = false
   });
 }
 

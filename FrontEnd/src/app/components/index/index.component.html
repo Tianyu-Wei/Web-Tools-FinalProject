@@ -17,7 +17,7 @@
             </select>
         </div>
         <form class="form-inline my-2 my-lg-0">
-            <input id="searchfield" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="keyword" name="keyword">
+            <input class="w-auto" id="searchfield" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="keyword" name="keyword">
             <a class="btn btn-warning mr-5" type="submit" href="/search/{{category}}/{{keyword}}/{{username}}/{{auth}}/{{role}}">Search</a>
         </form>
         <ul class="navbar-nav mr-auto float-right">
@@ -31,10 +31,7 @@
                 <a href="/category/{{username}}/{{auth}}/{{role}}" class="nav-link">Category</a>
             </li>
             <li class="nav-item">
-                <a href="/select/{{username}}/{{auth}}/{{role}}" class="nav-link">Sign up/Sign in</a>
-            </li>
-            <li class="nav-item">
-                <a href="/userdetail/{{username}}/{{auth}}/{{role}}" class="nav-link">User Detail</a>
+                <a href="/select/{{username}}/{{auth}}/{{role}}" class="nav-link">{{signinorname}}</a>
             </li>
             <li class="nav-item">
                 <a href="/order/{{username}}/{{auth}}/{{role}}" class="nav-link">Order/Return</a>
@@ -42,7 +39,6 @@
             <li class="nav-item">
                 <a href="/cart/{{username}}/{{auth}}/{{role}}" class="nav-link">Cart</a>
             </li>
-            <li class="nav-item"><div>{{username}}</div></li>
         </ul>
     </div>
 </nav>

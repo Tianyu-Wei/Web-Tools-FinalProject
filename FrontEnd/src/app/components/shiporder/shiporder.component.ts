@@ -16,6 +16,7 @@ export class ShiporderComponent implements OnInit {
   @Input() auth;
   @Input() role;
   error = '';
+  isloading = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -31,12 +32,16 @@ export class ShiporderComponent implements OnInit {
   }
 
   shiporder(form: NgForm){
+    this.isloading = true;
 const labelnum = form.value.labelnum;
 
     this.cartservice.shipOrder(this.username, this.ordernum, labelnum).subscribe(res => {
-      this.router.navigate(['/seller/orders/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.isloading = false;
+      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
+      this.isloading = false;
       this.error = error;
+      this.router.navigate(['/shipsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
     });
   }
 

@@ -1,5 +1,8 @@
 <app-index></app-index>
-<div class="contain">
+<div *ngIf="isloading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="contain" *ngIf="!isloading">
     <h4>Are you sure to cancel the order: </h4>
     <button class="btn btn-primary" (click)="cancelorder()">Confirm</button>
 </div>

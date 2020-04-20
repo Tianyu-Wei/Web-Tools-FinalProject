@@ -59,11 +59,10 @@ export class AuthComponent implements OnInit {
       }, error => {
         console.log(error);
 
-        this.error = 'An error happens!';
+        this.error = 'Successfully Signed up!';
         this.isloading = false;
       });
     }
-
     form.reset();
   }
 

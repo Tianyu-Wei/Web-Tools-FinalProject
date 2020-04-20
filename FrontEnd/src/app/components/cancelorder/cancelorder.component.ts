@@ -16,6 +16,7 @@ export class CancelorderComponent implements OnInit {
   @Input() auth;
   @Input() role;
   error = '';
+  isloading = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -31,11 +32,15 @@ export class CancelorderComponent implements OnInit {
   }
 
   cancelorder(){
+    this.isloading = true;
     this.cartservice.cancelOrder(this.ordernum, this.username).subscribe(res => {
+      this.isloading = false;
       this.router.navigate(['/seller/orders/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
+      this.isloading = false;
       this.error = error;
       console.log(this.error);
+      this.router.navigate(['/seller/orders/' + this.username + '/' + this.auth + '/' + this.role]);
     });
   }
 

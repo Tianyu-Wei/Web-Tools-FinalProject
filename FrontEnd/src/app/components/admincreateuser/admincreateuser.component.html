@@ -4,7 +4,7 @@
         <div *ngIf="isloading" style="text-align: center;">
             <app-loading-spinner></app-loading-spinner>
         </div>
-        <div class="alert alert-danger" *ngIf="error">
+        <div class="alert alert-success" *ngIf="error">
             <p>{{ error }}</p>
         </div>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isloading">

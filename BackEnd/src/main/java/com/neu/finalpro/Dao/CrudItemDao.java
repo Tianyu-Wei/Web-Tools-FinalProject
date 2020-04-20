@@ -7,10 +7,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.dialect.function.StandardAnsiSqlAggregationFunctions;
 import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -59,9 +63,12 @@ public class CrudItemDao {
         try {
 
             beginTransaction();
+            CriteriaBuilder builder = getSession().getCriteriaBuilder();
+            CriteriaQuery<MainPagePojo> query1 = builder.createQuery(MainPagePojo.class);
+            Root<MainPagePojo> root = query1.from(MainPagePojo.class);
+            query1.select(root);
 
-            String query = "from MainPagePojo";
-            Query q = getSession().createQuery(query);
+            Query q = getSession().createQuery(query1);
             List<MainPagePojo> result = q.getResultList();
 
             return result;
@@ -82,8 +89,14 @@ public class CrudItemDao {
         try {
 
             beginTransaction();
-            Query q = getSession().createQuery("from MainPagePojo where id =:id");
-            q.setLong("id", Long.valueOf(id));
+            CriteriaBuilder builder = getSession().getCriteriaBuilder();
+            CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+            Root<MainPagePojo> root = query.from(MainPagePojo.class);
+            query.select(root).where(builder.equal(root.get("id"), id));
+            Query q = getSession().createQuery(query);
+
+//            Query q = getSession().createQuery("from MainPagePojo where id =:id");
+//            q.setLong("id", Long.valueOf(id));
             mpp = (MainPagePojo) q.uniqueResult();
             return mpp;
 
@@ -132,8 +145,15 @@ public class CrudItemDao {
 
             MainPagePojo mpp = new MainPagePojo();
             beginTransaction();
-            Query q = getSession().createQuery("from MainPagePojo where id= :id");
-            q.setLong("id", id);
+
+            CriteriaBuilder builder = getSession().getCriteriaBuilder();
+            CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+            Root<MainPagePojo> root = query.from(MainPagePojo.class);
+            query.select(root).where(builder.equal(root.get("id"), id));
+            Query q = getSession().createQuery(query);
+
+//            Query q = getSession().createQuery("from MainPagePojo where id= :id");
+//            q.setLong("id", id);
             mpp = (MainPagePojo) q.uniqueResult();
             mpp.setName(name);
             mpp.setCategory(category);
@@ -162,8 +182,15 @@ public class CrudItemDao {
         try {
 
             beginTransaction();
-            Query q = getSession().createQuery("from MainPagePojo where id = :id");
-            q.setLong("id", id);
+
+            CriteriaBuilder builder = getSession().getCriteriaBuilder();
+            CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+            Root<MainPagePojo> root = query.from(MainPagePojo.class);
+            query.select(root).where(builder.equal(root.get("id"), id));
+            Query q = getSession().createQuery(query);
+
+//            Query q = getSession().createQuery("from MainPagePojo where id = :id");
+//            q.setLong("id", id);
             MainPagePojo mpp = (MainPagePojo) q.uniqueResult();
             getSession().delete(mpp);
             commit();

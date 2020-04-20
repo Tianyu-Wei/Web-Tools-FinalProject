@@ -16,6 +16,7 @@ export class SellernormalorderComponent implements OnInit {
   orderDetail: any;
   error = '';
   status = '';
+  isloading = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -37,9 +38,13 @@ export class SellernormalorderComponent implements OnInit {
   }
 
   getOrder(){
+    this.isloading = true;
     this.cartservice.getNormalOrder(this.username).subscribe(res => {
+      this.isloading = false;
       this.results = res;
+      console.log(this.results);
     }, error => {
+      this.isloading = false;
       this.error = error;
       console.log(error);
     });

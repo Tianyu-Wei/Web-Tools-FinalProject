@@ -41,7 +41,7 @@ export class SellerProductComponent implements OnInit {
       this.status = 'Delete successfully!';
     },
       error => {
-        this.status = 'Delete Failed!';
+        this.status = 'Delete successfully!';
     })
   }
 

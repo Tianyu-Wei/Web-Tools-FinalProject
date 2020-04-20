@@ -36,6 +36,10 @@ import { SellernormalorderComponent } from './components/sellernormalorder/selle
 import { SellerreturnComponent } from './components/sellerreturn/sellerreturn.component';
 import { ShiporderComponent } from './components/shiporder/shiporder.component';
 import { CancelorderComponent } from './components/cancelorder/cancelorder.component';
+import { ReturnsuccessComponent } from './components/returnsuccess/returnsuccess.component';
+import { DeletesuccessComponent } from './components/deletesuccess/deletesuccess.component';
+import { ShipsuccessComponent } from './components/shipsuccess/shipsuccess.component';
+import { UserdeletesuccessComponent } from './components/userdeletesuccess/userdeletesuccess.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,10 @@ import { CancelorderComponent } from './components/cancelorder/cancelorder.compo
     SellerreturnComponent,
     ShiporderComponent,
     CancelorderComponent,
+    ReturnsuccessComponent,
+    DeletesuccessComponent,
+    ShipsuccessComponent,
+    UserdeletesuccessComponent,
   ],
   imports: [
     BrowserModule,

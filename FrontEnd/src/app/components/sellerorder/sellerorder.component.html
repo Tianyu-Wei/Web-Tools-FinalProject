@@ -1,5 +1,10 @@
 <app-index></app-index>
 <div class="container">
-    <a href="/seller/orders/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">View normal orders</a>
-    <a href="/seller/orders/return/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Process return orders</a>
+    <div class="row justify-content-md-center">
+        <div class="col-me-auto">
+            <h5>Please select your role: </h5><br>
+            <a href="/seller/orders/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">View normal orders</a> | 
+            <a href="/seller/orders/return/{{username}}/{{auth}}/{{role}}" class="btn btn-primary">Process return orders</a>
+    </div>
+    </div>
 </div>

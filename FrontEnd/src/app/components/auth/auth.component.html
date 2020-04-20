@@ -4,7 +4,7 @@
         <div *ngIf="isloading" style="text-align: center;">
             <app-loading-spinner></app-loading-spinner>
         </div>
-        <div class="alert alert-danger" *ngIf="error">
+        <div class="alert alert-success" *ngIf="error">
             <p>{{ error }}</p>
         </div>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isloading">
@@ -12,17 +12,29 @@
                 <label for="username" class="username">Username</label>
                 <input type="text" class="form-control" id="username" ngModel name="username" required username>
             </div>
+            <div *ngIf="authForm.controls['username'].invalid" class="alert alert-danger">
+                <div>Username is required</div>
+            </div>
             <div class="form-group">
                 <label for="password" class="password">Password</label>
                 <input type="password" id="password" class="form-control" ngModel name="password" required password minlength="6">
+            </div>
+            <div *ngIf="authForm.controls['password'].invalid" class="alert alert-danger">
+                <div>Password invalid</div>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" id="email" ngModel name="email" required email>
             </div>
+            <div *ngIf="authForm.controls['email'].invalid" class="alert alert-danger">
+                <div>E-mail invalid</div>
+            </div>
             <div class="form-group">
                 <label for="recovemail" class="recovemail">Recovery Email</label>
                 <input type="text" class="form-control" id="recovemail" ngModel name="recovemail" required recovemail>
+            </div>
+            <div *ngIf="authForm.controls['recovemail'].invalid" class="alert alert-danger">
+                <div>RecoveryE-mail invalid</div>
             </div>
             <div class="form-group">
                 <label for="phone" class="phone">Phone</label>
@@ -56,9 +68,15 @@
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" ngModel name="username" required username>
             </div>
+            <div *ngIf="authForm.controls['username'].invalid" class="alert alert-danger">
+                <div>Username is required</div>
+            </div>
             <div class="form-group">
                 <label for="password" class="password">Password</label>
                 <input type="password" id="password" class="form-control" ngModel name="password" required password minlength="6">
+            </div>
+            <div *ngIf="authForm.controls['password'].invalid" class="alert alert-danger">
+                <div>Password invalid</div>
             </div>
             <div>
                 <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">{{ isLogin ? 'Login' : 'Sign Up' }}</button> | 

@@ -26,6 +26,9 @@ import { SellerreturnComponent } from './components/sellerreturn/sellerreturn.co
 import { ShiporderComponent } from './components/shiporder/shiporder.component';
 import { CancelorderComponent } from './components/cancelorder/cancelorder.component';
 import { SellerorderComponent } from './components/sellerorder/sellerorder.component';
+import { DeletesuccessComponent } from './components/deletesuccess/deletesuccess.component';
+import { ShipsuccessComponent } from './components/shipsuccess/shipsuccess.component';
+import { UserdeletesuccessComponent } from './components/userdeletesuccess/userdeletesuccess.component';
 
 
 const routes: Routes = [
@@ -45,7 +48,7 @@ const routes: Routes = [
   {path: 'createitem/:username/:auth/:role', component: CreateItemComponent},
   {path: 'cart/:username/:auth/:role', component: CartComponent},
   {path: 'ordersuccess/:username/:auth/:role', component: OrdersuccessComponent},
-  {path: 'cartsuccess/:username/:auth/:role', component: CartsuccessComponent},
+  {path: 'cartsuccess/:id/:username/:auth/:role', component: CartsuccessComponent},
   {path: 'order/:username/:auth/:role', component: OrdermanageComponent},
   {path: 'adminproduct/:username/:auth/:role', redirectTo: 'seller/manageproduct/:username/:auth/:role', pathMatch: 'full'},
   {path: 'adminuser/:username/:auth/:role', component: AdminuserComponent},
@@ -55,7 +58,10 @@ const routes: Routes = [
   {path: 'seller/orders/return/:username/:auth/:role', component: SellerreturnComponent},
   {path: 'shiporder/:username/:ordernum/:sellername/:auth/:role', component: ShiporderComponent},
   {path: 'cancelorder/:username/:ordernum/:sellername/:auth/:role', component: CancelorderComponent},
-  {path: 'seller/order/:username/:auth/:role', component: SellerorderComponent}
+  {path: 'seller/order/:username/:auth/:role', component: SellerorderComponent},
+  {path: 'deletesuccess/:username/:auth/:role', component: DeletesuccessComponent},
+  {path: 'shipsuccess/:username/:auth/:role', component: ShipsuccessComponent},
+  {path: 'userdeletesuccess/:username/:auth/:role', component: UserdeletesuccessComponent}
 
 ];
 

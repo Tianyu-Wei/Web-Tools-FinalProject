@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 
@@ -15,8 +15,9 @@ export class AdminuserComponent implements OnInit {
 @Input() role;
 result: any;
 error = '';
+isloading = false;
 
-  constructor(private route: ActivatedRoute, private authservice: AuthService) {
+  constructor(private route: ActivatedRoute, private authservice: AuthService, private router: Router) {
     this.route.params.subscribe(res => {
       this.username = res['username'];
       this.auth = res['auth'];
@@ -29,18 +30,26 @@ error = '';
   }
 
   getUserList(){
+    this.isloading = true;
     this.authservice.getUserList().subscribe(res => {
       this.result = res;
+      this.isloading = false;
       console.log(this.result);
     }, error => {
+      this.isloading = false;
       this.error = error;
     });
   }
 
   delete(id: number){
+    this.isloading = true;
     this.authservice.deleteUser(id.toString()).subscribe(res => {
+      this.isloading = false;
+      this.router.navigate(['/userdeletesuccess/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
+      this.isloading = false;
       this.error = error;
+      this.router.navigate(['/userdeletesuccess/' + this.username + '/' + this.auth + '/' + this.role]);
     });
   }
 }

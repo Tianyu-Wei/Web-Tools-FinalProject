@@ -17,6 +17,7 @@ export class OrdermanageComponent implements OnInit {
   orderDetail: any;
   error = '';
   status = '';
+  returnBtn = true;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -29,6 +30,10 @@ export class OrdermanageComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  switchReturn(){
+    this.returnBtn = false;
   }
 
   checkAuth(){
@@ -56,7 +61,8 @@ export class OrdermanageComponent implements OnInit {
   return(id: number) {
     this.cartservice.returnOrder(id.toString(), this.username).subscribe(res => {
     });
-    this.router.navigate(['/ordersuccess/' + this.username + '/' + this.role + '/' + this.auth]);
+    this.router.navigate(['/returnsuccess/' + this.username + '/' + this.role + '/' + this.auth]);
+    this.returnBtn = true;
   }
 
 }

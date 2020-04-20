@@ -18,6 +18,7 @@ export class SellerreturnComponent implements OnInit {
   orderDetail: any;
   error = '';
   status = '';
+  isloading = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -39,18 +40,24 @@ export class SellerreturnComponent implements OnInit {
   }
 
   getOrder(){
+    this.isloading = true
     this.cartservice.getReturnOrder(this.username).subscribe(res => {
       this.results = res;
+      this.isloading = false;
     }, error => {
       this.error = error;
       console.log(error);
+      this.isloading = false;
     });
   }
 
   approve(ordernum: number){
+    this.isloading = true;
     this.cartservice.approveReturn(ordernum.toString(), this.username).subscribe(res =>{
+      this.isloading = false;
       this.router.navigate(['/seller/orders/return' + '/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
+      this.isloading = false;
       this.error = error;
     });
   }

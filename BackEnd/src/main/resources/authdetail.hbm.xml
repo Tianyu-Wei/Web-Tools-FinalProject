@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.neu.finalpro.pojo.AuthDetail" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="authdetail">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="authentication" class="com.neu.finalpro.pojo.AuthDetail">
+            <column name="userid"></column>
+        </many-to-one>
+        <property name="joinid" type="java.lang.String">
+            <column name="joinid"/>
+        </property>
+        <property name="date" type="java.lang.String">
+            <column name="date"/>
+        </property>
+    </class>
+</hibernate-mapping>

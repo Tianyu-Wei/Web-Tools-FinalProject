@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   @Input() username = 'no';
   @Input() auth = 'no';
   @Input() role = 'no';
+  signinorname = 'Sign up/Log in';
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private authservice: AuthService, private cookie: CookieService,
     private router: Router) {
@@ -25,15 +26,25 @@ export class IndexComponent implements OnInit {
         this.auth = params['auth'];
         this.role = params['role'];
       });
+      this.setSigninName();
      }
 
   ngOnInit(): void {
     this.category = 'all';
   }
 
+  setSigninName(){
+    if (this.auth === 'no'){
+      this.signinorname = 'Sign up/Log in';
+    }else{
+      this.signinorname = this.username;
+    }
+  }
+
   logout(){
      this.authservice.logout();
 
+     
      this.router.navigate(['/home/no/no/no']);
   }
 }

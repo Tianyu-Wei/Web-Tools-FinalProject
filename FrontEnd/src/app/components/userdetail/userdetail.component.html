@@ -1,51 +1,67 @@
 <app-index></app-index>
-<div *ngIf="!isLoaded">
+<div *ngIf="!isLoaded" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<div *ngIf="!Updated">
-<div *ngIf="isLoaded">
-    <div>Username: {{result.username}}</div>
-    <div>E-mail: {{result.email}}</div>
-    <div>Recovery E-mail {{result.recovemail}}</div>
-    <div>Phone: {{result.phone}}</div>
-    <div>Role: {{result.role}}</div>
-    <button class="btn btn-primary" (click)="onSwitchUpdate()">Update</button>
-    <a href="/admin/{{oldusername}}/{{authen}}/admin" class="btn btn-primary" *ngIf="role.includes('admin')">Admin management System</a>
-    <a href="/seller/{{oldusername}}/{{authen}}/seller" class="btn btn-primary" *ngIf="role.includes('seller')">Seller management System</a>
-</div>
-</div>
-<div *ngIf="Updated">
-    Profile updated successfully! Please login<br>
-    <a href="/login/no/no/no">Go to login</a> | 
-    <a href="/home/no/no/no">Back to main page</a>
-</div>
-<div *ngIf="Update">
-    <div class="alert alert-danger" *ngIf="error">
-        <p>{{ error }}</p>
+
+<div class="container">
+    <div class="row justify-content-md-around">
+        <div class="col-md-auto" *ngIf="Updated">
+            Profile updated successfully! Please login<br>
+            <a href="/select/no/no/no">Go to login</a> |
+            <a href="/home/no/no/no">Back to main page</a>
+        </div>
+        <div class="col-md-auto">
+            <div *ngIf="!Updated">
+                <div *ngIf="isLoaded">
+                    <div>Username: {{result.username}}</div>
+                    <div>E-mail: {{result.email}}</div>
+                    <div>Recovery E-mail {{result.recovemail}}</div>
+                    <div>Phone: {{result.phone}}</div>
+                    <div>Role: {{result.role}}</div>
+                    <button class="btn btn-primary" (click)="onSwitchUpdate()">Update</button>
+                    <a href="/admin/{{oldusername}}/{{authen}}/admin" class="btn btn-primary"
+                        *ngIf="role.includes('admin')">Admin management System</a>
+                    <a href="/seller/{{oldusername}}/{{authen}}/seller" class="btn btn-primary"
+                        *ngIf="role.includes('seller')">Seller management System</a>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-auto">
+
+        <div *ngIf="Update">
+            <div *ngIf="isLoaded">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
+            <form #detailform="ngForm" (ngSubmit)="UpdateDetail(detailform)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" class="form-control" id="username" value="{{result.username}}" ngModel
+                        name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" ngModel name="password"
+                        value="{{result.password}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" ngModel name="email" value="{{result.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="recovemail">Recorety Email</label>
+                    <input type="text" class="form-control" id="recovemail" ngModel name="recovemail"
+                        value="{{result.recovemail}}">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" ngModel name="phone" value="{{result.phone}}">
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
     </div>
-    <form #detailform="ngForm" (ngSubmit)="UpdateDetail(detailform)">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="username" class="form-control" id="username" value="{{result.username}}" ngModel name="username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" ngModel name="password"
-                value="{{result.password}}">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" ngModel name="email" value="{{result.email}}">
-        </div>
-        <div class="form-group">
-            <label for="recovemail">Recorety Email</label>
-            <input type="text" class="form-control" id="recovemail" ngModel name="recovemail"
-                value="{{result.recovemail}}">
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" ngModel name="phone" value="{{result.phone}}">
-        </div>
-        <button class="btn btn-primary" type="submit">Save</button>
-    </form>
 </div>
+    </div>
+</div>
+

@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   @Input() role;
   results: any;
   error = '';
+  isloading = false;
 
   constructor(private route: ActivatedRoute, private cartservice: CartServiceService, private router: Router) {
     this.route.params.subscribe(res => {
@@ -43,19 +44,28 @@ export class CartComponent implements OnInit {
   }
 
   createOrder(id: string){
+    this.isloading = true;
       this.cartservice.createOrder(this.username, id, '1').subscribe(res => {
         this.router.navigate(['/ordersuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+        this.isloading = false;
+      }, error => {
+        this.router.navigate(['/ordersuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+        this.isloading = false;
       });
-      this.router.navigate(['/ordersuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      
   }
 
   deleteOrder(id: string) {
+    this.isloading = true;
     this.cartservice.deleteCartData(this.username, id).subscribe(res => {
-      this.router.navigate(['/cart/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.router.navigate(['/deletesuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.isloading = false;
     }, error => {
       this.error = 'Delete failed!';
+      this.router.navigate(['/deletesuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.isloading = false;
     });
-    this.router.navigate(['/cart/' + this.username + '/' + this.auth + '/' + this.role]);
+    
   }
 
 }

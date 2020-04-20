@@ -6,8 +6,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+import sun.applet.Main;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,19 +49,22 @@ public class SearchItemDao {
         try {
 
             beginTransaction();
-            String allquery = "from MainPagePojo where name = '<keyword>'";
-            String indivquery = "from MainPagePojo where name = '<keyword>' and category = '<cate>'";
 
-            //Make judgement by its category to the right HQL query
+            //Make judgement by its category to the right query
             if (category.equals("all")) {
-                String newnewquery = allquery.replace("<keyword>", keyword);
-                Query q = getSession().createQuery(newnewquery);
+                CriteriaBuilder builder = getSession().getCriteriaBuilder();
+                CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+                Root<MainPagePojo> root = query.from(MainPagePojo.class);
+                query.select(root).where(builder.equal(root.get("name"), keyword));
+                Query q = getSession().createQuery(query);
                 resultList = q.getResultList();
             }
             else {
-                String newquery = indivquery.replace("<keyword>", keyword);
-                String newnewquery = newquery.replace("<cate>", category);
-                Query q = getSession().createQuery(newnewquery);
+                CriteriaBuilder builder = getSession().getCriteriaBuilder();
+                CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+                Root<MainPagePojo> root = query.from(MainPagePojo.class);
+                query.select(root).where(builder.and(builder.equal(root.get("name"), keyword), builder.equal(root.get("category"), category)));
+                Query q = getSession().createQuery(query);
                 resultList = q.getResultList();
             }
 
@@ -75,12 +84,13 @@ public class SearchItemDao {
         try {
 
             beginTransaction();
-            String allquery = "from MainPagePojo where category = '<cate>'";
-
-            //Make judgement by its category to the right HQL query
-                String newquery = allquery.replace("<cate>", category);
-                Query q = getSession().createQuery(newquery);
-                resultList = q.getResultList();
+            //Using criteria to generate query
+            CriteriaBuilder builder = getSession().getCriteriaBuilder();
+            CriteriaQuery<MainPagePojo> query = builder.createQuery(MainPagePojo.class);
+            Root<MainPagePojo> root = query.from(MainPagePojo.class);
+            query.select(root).where(builder.equal(root.get("category"), category));
+            Query<MainPagePojo> q = getSession().createQuery(query);
+            resultList = q.getResultList();
 
         }catch (HibernateException e) {
             e.printStackTrace();

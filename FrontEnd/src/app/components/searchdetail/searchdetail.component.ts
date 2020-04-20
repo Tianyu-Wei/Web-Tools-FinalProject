@@ -50,9 +50,9 @@ export class SearchdetailComponent implements OnInit {
     const itemid = id.toString();
 
     this.orderservice.addToCart(this.username, itemid, '1').subscribe(res => {
-      this.router.navigate(['/cartsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+      this.router.navigate(['/cartsuccess/' + this.id + '/' + this.username + '/' + this.auth + '/' + this.role]);
     });
-    this.router.navigate(['/cartsuccess/' + this.username + '/' + this.auth + '/' + this.role]);
+    this.router.navigate(['/cartsuccess/' + this.id + '/' + this.username + '/' + this.auth + '/' + this.role]);
   }
   }
 

@@ -1,20 +1,25 @@
 <app-index></app-index>
-<div class="container">
-    <section class="col-xs-12 col-sm-6 col-md-12">
-            <article class="search-result row" *ngFor="let searchresult of results; let i = index">
-                <div class="col-xs-12 col-sm-12 col-md-3">
+<div *ngIf="isloading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+    <div class="container" *ngIf="!isloading">
+        <section class="col-xs-12 col-sm-6 col-md-12">
+            <article class="search-result row mt-5" *ngFor="let searchresult of results; let i = index">
+                <div class="col-xs-12 col-sm-12 col-md-3 mt-4">
                     <a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="Lorem ipsum" class="thumbnail"><img class="img-responsive" src="{{searchresult.imgURL}}" alt="{{searchresult.name}}" height="150" width="150"/></a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                    <p>{{searchresult.orderNum}}</p>
-                    <h3><a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="">{{searchresult.name}}</a></h3>
-                    <p>{{searchresult.amount}}</p>
-                    <p>{{searchresult.orderstatus}}</p>
-                    <div>${{searchresult.price}}</div>						
+                    <h4>Product Name: <a href="/detail/{{searchresult.id}}/{{username}}/{{auth}}/{{role}}" title="">{{searchresult.name}}</a></h4>
+                    <p>Order Number: {{searchresult.orderNum}}</p>
+                    <p>Amount: {{searchresult.amount}}</p>
+                    <p>Order Status: {{searchresult.orderstatus}}</p>
+                    <div>Total: ${{searchresult.price}}</div>		
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                    <button class="btn btn-primary" (click)="approve(searchresult.orderNum)">Prove</button>
-                </div>
+                    <div class="col-xs-8">
+                        <div class="row">
+                            <button class="btn btn-primary" (click)="approve(searchresult.orderNum)">Prove</button>
+                    </div>
+                    </div>
                 <span class="clearfix borda"></span>
             </article>
         </section>

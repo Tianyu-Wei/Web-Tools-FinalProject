@@ -38,11 +38,12 @@ export class CreateItemComponent implements OnInit {
     const discount = form.value.discount;
 
     this.crudservice.createItemService(name, amount, price, category, description, imgUrl, discount).subscribe(res => {
-      this.router.navigate(['/seller/manageproduct/' + this.username + '/' + this.auth + '/' + this.role]);
       this.isCreating = false;
+      this.router.navigate(['/seller/manageproduct/' + this.username + '/' + this.auth + '/' + this.role]);
     }, error => {
       this.error = error;
       this.isCreating = false;
+      this.router.navigate(['/seller/manageproduct/' + this.username + '/' + this.auth + '/' + this.role]);
     });
   }
 
